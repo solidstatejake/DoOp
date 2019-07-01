@@ -1,0 +1,14 @@
+{
+  "name": "do-op",
+  "version": "1.0.0",
+  "description": "A todo list application powered by node and mongodb.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jacob Berg",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.2.7"
+  }
+}
