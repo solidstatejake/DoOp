@@ -42,6 +42,19 @@ const User = mongoose.model('User', {
     min: 13,
     max: 110
   },
+
+  password: {
+    type: String,
+    required: true,
+    min: 8,
+    max: 40,
+    validate(password) {
+      const regex = /^password\d+/i;
+      if(password.match(regex)){
+        throw new Error("Password cannot be a variation of 'password'.")
+      }
+    }
+  }
 });
 
 const Task = mongoose.model('Task', {
@@ -51,17 +64,19 @@ const Task = mongoose.model('Task', {
     trim: true
   },
   completed: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
 });
 
 
-const katya = new User({
-  name: 'Katya',
-  email:'KiWasiu1@binghamton.edu',
-  age: 21
-}).save().then((user)=>{
-  log(user);
-}).catch((error)=>{
-  log(error);
-});
+// const katya = new User({
+//   name: 'Katya',
+//   email:'KiWasiu1@binghamton.edu',
+//   age: 21,
+//   password: 'password12093812837123'
+// }).save().then((user)=>{
+//   log(user);
+// }).catch((error)=>{
+//   log(error);
+// });
