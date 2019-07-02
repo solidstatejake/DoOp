@@ -59,6 +59,8 @@ const userSchema = new mongoose.Schema({
       required: true
     }
   } ]
+},{
+  timestamps: true
 });
 
 userSchema.virtual('tasks', {
@@ -109,6 +111,7 @@ userSchema.pre('save', async function(next) {
 
   next();
 });
+
 
 userSchema.pre('remove', async function(next) {
   const user = this;
