@@ -52,12 +52,12 @@ const userSchema = new mongoose.Schema({
     }
   },
 
-  tokens: [{
+  tokens: [ {
     token: {
       type: String,
       required: true
     }
-  }]
+  } ]
 });
 
 userSchema.methods.generateAuthToken = async function() {
@@ -65,7 +65,7 @@ userSchema.methods.generateAuthToken = async function() {
   // create a json web token
   const token = jsonWebToken.sign({ _id: user._id.toString() }, "somerandomjsontokenforsigning");
   //add it to the user document in mongo
-  user.tokens = user.tokens.concat({token});
+  user.tokens = user.tokens.concat({ token });
   //save that addition to db
   await user.save();
 
@@ -75,11 +75,11 @@ userSchema.methods.generateAuthToken = async function() {
 userSchema.statics.findByCredentials = async(email, password) => {
   const user = await User.findOne({ email });
 
-  if(!user) throw new Error("No user exists with provided email or password");
+  if (!user) throw new Error("No user exists with provided email or password");
 
   const isMatch = await bcrypt.compare(password, user.password);
 
-  if(!isMatch) throw new Error('No user exists with provided email or password');
+  if (!isMatch) throw new Error('No user exists with provided email or password');
 
   return user;
 };
