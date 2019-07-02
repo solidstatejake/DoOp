@@ -108,8 +108,8 @@ app.patch('/users/:id', async(req, res) => {
   const allowedUpdates = [ 'name', 'email', 'age', 'password' ];
   const isValidUpdate = updates.every((update) => allowedUpdates.includes(update));
 
-  if(!isValidUpdate) {
-    return res.status(400).send({error: "Invalid update field(s) presented."});
+  if (!isValidUpdate) {
+    return res.status(400).send({ error: "Invalid update field(s) presented." });
   }
 
   try {
@@ -126,6 +126,31 @@ app.patch('/users/:id', async(req, res) => {
 
   catch (error) {
     res.status(400).send();
+  }
+});
+
+app.patch('/tasks/:id', async(req, res) => {
+  const updates = Object.keys(req.body);
+  const allowedUpdates = [ 'description', 'completed' ];
+  const isValidUpdate = updates.every((update) => allowedUpdates.includes(update));
+
+  if (!isValidUpdate) {
+    return res.status(400).send({ error: "Invalid update field(s) presented." });
+  }
+
+  try {
+    const task = await Task.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true });
+
+    if(!task) return res.status(404).send();
+
+    res.send(task);
+  }
+
+  catch (error) {
+    res.status(400).send(error);
   }
 });
 
