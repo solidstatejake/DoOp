@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const log = console.log;
+const jsonWebToken = require('jsonwebtoken');
+
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -49,8 +50,27 @@ const userSchema = new mongoose.Schema({
         throw new Error("Password cannot be a variation of 'password'.")
       }
     }
-  }
+  },
+
+  tokens: [{
+    token: {
+      type: String,
+      required: true
+    }
+  }]
 });
+
+userSchema.methods.generateAuthToken = async function() {
+  const user = this;
+  // create a json web token
+  const token = jsonWebToken.sign({ _id: user._id.toString() }, "somerandomjsontokenforsigning");
+  //add it to the user document in mongo
+  user.tokens = user.tokens.concat({token});
+  //save that addition to db
+  await user.save();
+
+  return token;
+};
 
 userSchema.statics.findByCredentials = async(email, password) => {
   const user = await User.findOne({ email });
@@ -66,7 +86,7 @@ userSchema.statics.findByCredentials = async(email, password) => {
 
 
 userSchema.pre('save', async function(next) {
-  const user = this; // for clarity
+  const user = this;
 
   if (user.isModified('password')) {
     user.password = await bcrypt.hash(user.password, 8);
