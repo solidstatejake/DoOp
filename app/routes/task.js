@@ -59,7 +59,7 @@ router.patch('/tasks/:id', async(req, res) => {
       req.body,
       { new: true, runValidators: true });
 
-    if(!task) return res.status(404).send();
+    if (!task) return res.status(404).send();
 
     res.send(task);
   }
@@ -69,7 +69,7 @@ router.patch('/tasks/:id', async(req, res) => {
   }
 });
 
-router.delete('/tasks/:id', async (req, res) => {
+router.delete('/tasks/:id', async(req, res) => {
   const _id = req.params.id;
 
   try {
