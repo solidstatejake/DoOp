@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcrypt = require('bcryptjs');
+
+const log = console.log;
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -10,7 +13,7 @@ const userSchema = new mongoose.Schema({
     maxlength: 15,
     validate(name) {
       const regex = /f+u+c+k+/;
-      if(validator.matches(name, regex)) throw new Error("Name cannot contain" +
+      if (validator.matches(name, regex)) throw new Error("Name cannot contain" +
         " profanity.");
     }
 
@@ -21,8 +24,8 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true,
     lowercase: true,
-    validate(emailAddress){
-      if(!validator.isEmail(emailAddress)){
+    validate(emailAddress) {
+      if (!validator.isEmail(emailAddress)) {
         throw new Error('Please enter a valid email address.');
       }
     }
@@ -42,7 +45,7 @@ const userSchema = new mongoose.Schema({
     max: 40,
     validate(password) {
       const regex = /^password\d*/i;
-      if(password.match(regex)){
+      if (password.match(regex)) {
         throw new Error("Password cannot be a variation of 'password'.")
       }
     }
@@ -50,8 +53,13 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', async function(next) {
-  const user = this;
+  const user = this; // for clarity
 
+  if (user.isModified('password')) {
+    user.password = await bcrypt.hash(user.password, 8);
+  }
+
+  next();
 });
 
 const User = mongoose.model('User', userSchema);
