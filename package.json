@@ -4,7 +4,9 @@
   "description": "A todo list application powered by node and mongodb.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app/src/index.js",
+    "dev": "nodemon app/src/index.js",
+    "db:connect": "node app/db/mongoose.js"
   },
   "author": "Jacob Berg",
   "license": "ISC",
