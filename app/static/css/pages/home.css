@@ -1,2 +1,15 @@
 body {
-  background-color: black; }
+  height: 100%; }
+
+.header {
+  font-size: 3rem;
+  margin-top: 1rem;
+  text-align: center; }
+
+.signup {
+  border: 1px solid black;
+  height: 40rem;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 10rem;
+  width: 50rem; }

@@ -1,3 +1,19 @@
+@import url("https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Expanded:300");
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-family: 'Encode Sans Semi Expanded', sans-serif;
+  font-size: 62.5%; }
+
 body {
-  background-color: red;
-  height: 10px; }
+  box-sizing: border-box; }
+
+.navigation {
+  background-color: #709fdc;
+  height: 100px;
+  width: 100%; }

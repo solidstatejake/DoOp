@@ -1,2 +1,24 @@
 include ../templates/includes/_head
 
+nav.navigation
+
+div.wrapper
+  header.header
+    h1.header__text #{title}
+
+  div.signup__container
+
+    form.signup__form(action='' method='post')
+
+      div
+        label(for='name')
+        input(type='text' id='name' name='name' placeholder='First Last'
+        autocomplete='on' required)
+
+        label(for='email')
+        input(type='email' id='email' name='email' placeholder='email@example.com'
+        autocomplete='on' required)
+
+        label(for='password')
+        input(type='password' id='password' name='password' placeholder='New Password'
+        required)

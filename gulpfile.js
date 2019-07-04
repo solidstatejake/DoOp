@@ -3,7 +3,7 @@ const sass = require('gulp-sass');
       sass.compiler = require('node-sass');
 const nodemon = require('gulp-nodemon');
 const cssPath = 'app/static/css/';
-const sassPath = 'app/static/sass/main.scss';
+const sassPath = 'app/static/sass/*';
 
 
 
