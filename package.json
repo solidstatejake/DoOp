@@ -4,13 +4,14 @@
   "description": "A todo list application powered by node and mongodb.",
   "main": "index.js",
   "scripts": {
-    "compile:sass": "node-sass ./static/sass/main.scss ./static/css/main.css -w",
+    "compile:sass": "node-sass ./app/static/sass/main.scss ./app/static/css/main.css -w",
+    "compile:home": "node-sass ./app/static/sass/pages/home.scss ./app/static/css/pages/home.css -w",
     "start": "node app/app.js",
     "dev": "nodemon app/app.js",
     "db:connect": "node app/db/mongoose.js"
   },
   "author": "Jacob Berg",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
@@ -21,6 +22,12 @@
     "validator": "^11.0.0"
   },
   "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-livereload": "^4.0.1",
+    "gulp-nodemon": "^2.4.2",
+    "gulp-pug": "^4.0.1",
+    "gulp-sass": "^4.0.2",
     "nodemon": "^1.19.1"
   }
 }

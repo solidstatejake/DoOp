@@ -1,6 +1,6 @@
 const express = require('express');
 const taskController = require('../controllers/taskController');
-const auth = require('../middleware/authentication');
+const auth = require('./middleware/authentication');
 const router = new express.Router();
 
 //set sort{ completed: false } to sort by non-completed tasks first

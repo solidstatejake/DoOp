@@ -3,7 +3,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jsonWebToken = require('jsonwebtoken');
 const Task = require('./Task');
-const filterObject = require('../utils/helpers');
+const filterObject = require('../static/utils/helpers');
 
 const userSchema = new mongoose.Schema({
   name: {
