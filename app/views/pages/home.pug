@@ -11,8 +11,13 @@ div.wrapper
     form.signup__form(action='' method='post')
 
       div
-        label(for='name')
-        input(type='text' id='name' name='name' placeholder='First Last'
+
+        label(for='firstName')
+        input(type='text' id='firstName' name='firstName' placeholder='First name'
+        autocomplete='on' required)
+
+        label(for='lastName')
+        input(type='text' id='lastName' name='lastName' placeholder='Last name'
         autocomplete='on' required)
 
         label(for='email')

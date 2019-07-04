@@ -6,7 +6,7 @@ const Task = require('./Task');
 const filterObject = require('../static/utils/helpers');
 
 const userSchema = new mongoose.Schema({
-  name: {
+  firstName: {
     type: String,
     required: true,
     trim: true,
@@ -18,6 +18,18 @@ const userSchema = new mongoose.Schema({
         " profanity.");
     }
 
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 2,
+    maxlength: 15,
+    validate(name) {
+      const regex = /f+u+c+k+/;
+      if (validator.matches(name, regex)) throw new Error("Name cannot contain" +
+        " profanity.");
+    }
   },
 
   email: {
@@ -32,14 +44,6 @@ const userSchema = new mongoose.Schema({
       }
     }
   },
-
-  age: {
-    type: Number,
-    required: true,
-    min: 13,
-    max: 110
-  },
-
   password: {
     type: String,
     required: true,
