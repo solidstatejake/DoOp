@@ -2,28 +2,29 @@ include ../templates/includes/_head
 
 nav.navigation
 
-div.wrapper
-  header.header
-    h1.header__text #{title}
 
-  div.signup__container
+header.header
+  h1.header__text #{title}
 
-    form.signup__form(action='' method='post')
+div.signup__container
 
-      div
+  form.signup__form(action='' method='post')
 
-        label(for='firstName')
-        input(type='text' id='firstName' name='firstName' placeholder='First name'
-        autocomplete='on' required)
+    label.signup__label(for='firstName') First name:
+    input.signup__input(type='text' id='firstName' name='firstName' placeholder='First ' +
+    'name'
+    autocomplete='on' required)
 
-        label(for='lastName')
-        input(type='text' id='lastName' name='lastName' placeholder='Last name'
-        autocomplete='on' required)
+    label.signup__label(for='lastName') Last name:
+    input.signup__input(type='text' id='lastName' name='lastName' placeholder='Last name'
+    autocomplete='on' required)
 
-        label(for='email')
-        input(type='email' id='email' name='email' placeholder='email@example.com'
-        autocomplete='on' required)
+    label.signup__label(for='email') Email:
+    input.signup__input(type='email' id='email' name='email' placeholder='email@example.com'
+    autocomplete='on' required)
 
-        label(for='password')
-        input(type='password' id='password' name='password' placeholder='New Password'
-        required)
+    label.signup__label(for='password') New password:
+    input.signup__input(type='password' id='password' name='password' placeholder='New Password'
+    required)
+
+    button.signup__button(type='submit') Create Account
