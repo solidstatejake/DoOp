@@ -3,18 +3,30 @@ const Task = require('../models/Task');
 const auth = require('../middleware/authentication');
 const router = new express.Router();
 
+
+//set sort{ completed: false } to sort by non-completed tasks first
+//
 router.get('/tasks', auth, async(req, res) => {
   const match = {};
+  const sort = {};
+
   if(req.query.completed) {
     match.completed = req.query.completed === 'true'
   }
+
+  if(req.query.sortBy) {
+    const sortQuery = req.query.sortBy.split(':');
+    sort[sortQuery[0]] = sortQuery[1] === 'desc' ? -1 : 1;
+  }
+
   try {
     await req.user.populate({
       path: 'tasks',
       match,
       options: {
         limit: parseInt(req.query.limit),
-        skip: parseInt(req.query.skip)
+        skip: parseInt(req.query.skip),
+        sort
       }
     }).execPopulate();
     res.send(req.user.tasks);
