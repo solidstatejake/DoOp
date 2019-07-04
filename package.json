@@ -4,8 +4,9 @@
   "description": "A todo list application powered by node and mongodb.",
   "main": "index.js",
   "scripts": {
-    "start": "node app/src/index.js",
-    "dev": "nodemon app/src/index.js",
+    "compile:sass": "node-sass ./static/sass/main.scss ./static/css/main.css -w",
+    "start": "node app/app.js",
+    "dev": "nodemon app/app.js",
     "db:connect": "node app/db/mongoose.js"
   },
   "author": "Jacob Berg",
@@ -16,6 +17,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.2.7",
     "mongoose": "^5.6.2",
+    "pug": "^2.0.4",
     "validator": "^11.0.0"
   },
   "devDependencies": {
